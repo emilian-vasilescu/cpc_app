@@ -17,22 +17,17 @@ def check_jwt_token(f):
             token = request.headers['x-access-token']
         # return 401 if token is not passed
         if not token:
-            return jsonify(
-                {'error': 'Token is missing !!'}
-            ), 401
+            return {'error': 'Token is missing !!'}, 401
 
         try:
-            x = app
             # decoding the payload to fetch the stored details
             data = jwt.decode(jwt=token, key=app.config['SECRET_KEY'], algorithms="HS256")
             current_user = User.query \
                 .filter_by(public_id=data['public_id']) \
                 .first()
         except Exception as e:
-            return jsonify(
-                {'error': str(e)}
-            ), 401
+            return {'error': str(e)}, 401
         # returns the current logged in users context to the routes
-        return f(current_user, *args, **kwargs)
+        return f(*args, current_user, **kwargs)
 
     return decorated
