@@ -4,6 +4,7 @@ from flask import request
 from flask_restful import Resource
 from werkzeug.security import generate_password_hash
 
+from Models.Card import Card
 from Models.User import User
 from Services.Decorators.check_jwt_token import check_jwt_token
 from app import db
@@ -14,24 +15,21 @@ class UserController(Resource):
     @check_jwt_token
     def get(self, current_user, user_id=None):
 
+        if current_user.role != User.ADMIN:
+            user_id = current_user.id
+
+        users = []
         if type(user_id) is int:
-            users = [User.query.get(user_id)]
+            user = User.query.get(user_id)
+            if user:
+                users.append(user)
+
         else:
             users = User.query.all()
 
-        output = []
-        for user in users:
-            output.append({
-                'id': user.id,
-                'public_id': user.public_id,
-                'name': user.name,
-                'role': user.role,
-                'email': user.email
-            })
-
         return {
             'data': {
-                'users': output
+                'users': [user.to_dict() for user in users]
             }
         }
 
@@ -77,15 +75,7 @@ class UserController(Resource):
 
             db.session.commit()
 
-            user_output = {
-                'id': user.id,
-                'public_id': user.public_id,
-                'name': user.name,
-                'role': user.role,
-                'email': user.email
-            }
-
-            return {'message': 'User updated', 'data': {'user': user_output}}, 201
+            return {'message': 'User updated', 'data': {'user': user.to_dict()}}, 201
 
     @check_jwt_token
     def delete(self, current_user, user_id=None):
@@ -94,6 +84,10 @@ class UserController(Resource):
         if type(user_id) is not int:
             return {'message': 'Provide an user id !!'}, 403
 
+        # delete attached cards
+        Card.query.filter_by(user_id=user_id).delete()
+
+        # delete user
         user = User.query \
             .filter_by(id=user_id) \
             .first()

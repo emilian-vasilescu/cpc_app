@@ -1,4 +1,3 @@
-# creates Flask object
 from flask import Flask, json
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.exceptions import HTTPException
@@ -15,10 +14,7 @@ db = SQLAlchemy(app)
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
-    """Return JSON instead of HTML for HTTP errors."""
-    # start with the correct headers and status code from the error
     response = e.get_response()
-    # replace the body with JSON
     response.data = json.dumps({
         "code": e.code,
         "name": e.name,

@@ -29,5 +29,5 @@ class LoginController(Resource):
                 'exp': datetime.utcnow() + timedelta(days=1)
             }, app.config['SECRET_KEY'])
 
-            return {'data': {'token': token}}, 201
+            return {'data': {'token': token, 'user': user.to_dict()}}, 201
         return {'message': 'Wrong Password !!'}, 403

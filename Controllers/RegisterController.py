@@ -4,6 +4,7 @@ from flask_restful import Resource
 from werkzeug.security import generate_password_hash
 
 from Models.User import User
+from Services.CollectionService import CollectionService
 from app import db
 
 
@@ -28,6 +29,7 @@ class RegisterController(Resource):
                 name=name,
                 email=email,
                 role=role,
+                budget=500,
                 password=generate_password_hash(password)
             )
             # insert user
@@ -41,6 +43,9 @@ class RegisterController(Resource):
                 'role': user.role,
                 'email': user.email
             }
+
+            collection_service = CollectionService(user)
+            collection_service.generate_collection()
 
             return {'message': 'Successfully registered.', 'data': {'user': user_output}}, 201
         else:
