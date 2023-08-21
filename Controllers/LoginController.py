@@ -1,10 +1,8 @@
 from datetime import datetime, timedelta
-
 import jwt
-from flask import request, make_response, jsonify
+from flask import request
 from flask_restful import Resource
 from werkzeug.security import check_password_hash
-
 from Models.User import User
 from app import app
 

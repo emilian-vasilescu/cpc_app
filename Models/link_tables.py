@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, Table, ForeignKey
 from app import db
 
-
 user_card_association = Table(
     'user_card',
     db.metadata,

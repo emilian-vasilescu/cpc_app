@@ -31,4 +31,3 @@ class User(db.Model, SerializerMixin):
         self.budget = budget
         self.country = country
         self.password = password
-

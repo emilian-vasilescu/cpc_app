@@ -1,10 +1,8 @@
 from flask import request
 from flask_restful import Resource
-from werkzeug.security import generate_password_hash
-
-from Models.Card import Card
 from Models.User import User
 from Services.Decorators.check_jwt_token import check_jwt_token
+from Services.UserService import UserService
 from app import db
 
 
@@ -35,41 +33,26 @@ class UserController(Resource):
     @check_jwt_token
     def put(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can modify other users !!'}, 403
+            return {'message': 'Only Admins can modify other users !!'}, 400
 
         if type(user_id) is not int:
-            return {'message': 'Provide an user id !!'}, 403
+            return {'message': 'Provide an user id !!'}, 400
 
-        data = request.form
+        try:
+            user = User.query \
+                .filter_by(id=user_id) \
+                .first()
 
-        name, email, role, country = data.get('name'), data.get('email'), data.get('role'), data.get('country')
-        password = data.get('password')
+            user_service = UserService()
+            user_service.user = user
+            user_service.data = request.form
+            user_service.update_user()
+        except Exception as e:
+            return {'message': str(e)}, 400
 
-        user = User.query \
-            .filter_by(id=user_id) \
-            .first()
+        db.session.commit()
 
-        if not user:
-            return {'message': 'User does not exist'}, 404
-        else:
-            if not any([name, email, role, country, password]):
-                return {'message': 'At least one of Name, role, email, country or password is mandatory.'}, 400
-
-            # @todo Validate data
-            if name:
-                user.name = name
-            if email:
-                user.email = email
-            if role:
-                user.role = role
-            if country:
-                user.country = country
-            if password:
-                user.password = generate_password_hash(password)
-
-            db.session.commit()
-
-            return {'message': 'User updated', 'data': {'user': user.to_dict()}}, 201
+        return {'message': 'User updated', 'data': {'user': user.to_dict()}}, 201
 
     @check_jwt_token
     def delete(self, current_user, user_id=None):

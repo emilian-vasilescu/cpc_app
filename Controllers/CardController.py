@@ -3,6 +3,7 @@ from flask_restful import Resource
 
 from Models.Card import Card
 from Models.User import User
+from Services.CardService import CardService
 from Services.Decorators.check_jwt_token import check_jwt_token
 from app import db
 
@@ -36,34 +37,21 @@ class CardController(Resource):
         if type(card_id) is not int:
             return {'message': 'Provide a card id !!'}, 403
 
-        data = request.form
+        try:
+            card = Card.query \
+                .filter_by(id=card_id) \
+                .first()
 
-        skill_level, name, market_value, age = data.get('skill_level'), data.get('name'), data.get(
-            'market_value'), data.get('age')
+            card_service = CardService()
+            card_service.card = card
+            card_service.data = request.form
+            card_service.update_card()
+        except Exception as e:
+            return {'message': str(e)}, 400
 
-        card = Card.query \
-            .filter_by(id=card_id) \
-            .first()
+        db.session.commit()
 
-        if not card:
-            return {'message': 'Card does not exist'}, 404
-        else:
-            if not any([skill_level, name, market_value, age]):
-                return {'message': 'At least one of skill_level, name, market_value or age is mandatory.'}, 400
-
-            # @todo Validate data
-            if skill_level:
-                card.skill_level = skill_level
-            if name:
-                card.name = name
-            if market_value:
-                card.market_value = market_value
-            if age:
-                card.age = age
-
-            db.session.commit()
-
-            return {'message': 'Card updated', 'data': {'card': card.to_dict()}}, 201
+        return {'message': 'Card updated', 'data': {'card': card.to_dict()}}, 201
 
     @check_jwt_token
     def delete(self, current_user, card_id=None):
