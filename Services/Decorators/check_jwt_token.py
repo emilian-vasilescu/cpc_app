@@ -25,6 +25,10 @@ def check_jwt_token(f):
             current_user = User.query \
                 .filter_by(public_id=data['public_id']) \
                 .first()
+
+            if current_user is None:
+                raise Exception('Token is ok but, user doesn\'t exist')
+
         except Exception as e:
             return {'error': str(e)}, 401
         # returns the current logged in users context to the routes

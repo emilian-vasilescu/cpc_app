@@ -27,10 +27,9 @@ class CollectionService:
                 name=name,
                 age=random.randint(18, 40),
                 skill_level=skill_level,
-                market_value=100,
-                user_id=self.user.id
+                market_value=Card.INITIAL_MARKET_VALUE
             )
-            db.session.add(card)
+            self.user.cards.append(card)
             db.session.commit()
 
     async def get_name(self):

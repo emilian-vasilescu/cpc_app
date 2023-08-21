@@ -12,11 +12,11 @@ class RegisterController(Resource):
     def post(self):
         data = request.form
 
-        name, email, role = data.get('name'), data.get('email'), data.get('role')
+        name, email, role, country = data.get('name'), data.get('email'), data.get('role'), data.get('country')
         password = data.get('password')
 
         # @todo Validate data
-        if not all([name, email, role, password]):
+        if not all([name, email, role, country, password]):
             return {'message': 'Name, role, email and password are mandatory.'}, 400
 
         user = User.query \
@@ -29,24 +29,17 @@ class RegisterController(Resource):
                 name=name,
                 email=email,
                 role=role,
-                budget=500,
+                budget=User.INITIAL_BUDGET,
+                country=country,
                 password=generate_password_hash(password)
             )
             # insert user
             db.session.add(user)
             db.session.commit()
 
-            user_output = {
-                'id': user.id,
-                'public_id': user.public_id,
-                'name': user.name,
-                'role': user.role,
-                'email': user.email
-            }
-
             collection_service = CollectionService(user)
             collection_service.generate_collection()
 
-            return {'message': 'Successfully registered.', 'data': {'user': user_output}}, 201
+            return {'message': 'Successfully registered.', 'data': {'user': user.to_dict()}}, 201
         else:
             return {'message': 'User already exists. Please Log in.'}, 202
