@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ my profile get/put&#10;+ many to many user_card&#10;+ user does not exist for id in token&#10;+ cards for user&#10;+ put/delete card&#10;+ country for user">
-      <change afterPath="$PROJECT_DIR$/Services/CardService.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/UserService.py" afterDir="false" />
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ move create/update cards and users logic to services">
+      <change afterPath="$PROJECT_DIR$/Controllers/TransactionController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Transaction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/TransactionService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/CardController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CardController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/LoginController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/LoginController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/MyProfileController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/MyProfileController.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/RegisterController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/RegisterController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UserController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Card.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/link_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/link_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CardService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CardService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/UserService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UserService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/init_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692628352791</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="+ move create/update cards and users logic to services">
+      <created>1692631605226</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692631605226</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +158,7 @@
     <MESSAGE value="+ CRUD users&#10;+ oop controllers for routes&#10;+ force json responses" />
     <MESSAGE value="+ create card&#10;+ link cards to user&#10;+ async call to external api to populate skill level and player name on card&#10;+ drop/create script for tables&#10;+ serialize query results" />
     <MESSAGE value="+ my profile get/put&#10;+ many to many user_card&#10;+ user does not exist for id in token&#10;+ cards for user&#10;+ put/delete card&#10;+ country for user" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ my profile get/put&#10;+ many to many user_card&#10;+ user does not exist for id in token&#10;+ cards for user&#10;+ put/delete card&#10;+ country for user" />
+    <MESSAGE value="+ move create/update cards and users logic to services" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ move create/update cards and users logic to services" />
   </component>
 </project>

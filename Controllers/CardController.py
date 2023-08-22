@@ -30,6 +30,23 @@ class CardController(Resource):
         }
 
     @check_jwt_token
+    def post(self, current_user, card_id=None):
+        if current_user.role != User.ADMIN:
+            return {'message': 'Only Admins can create cards !!'}, 403
+
+        try:
+            card_service = CardService()
+            card_service.data = request.form
+            card_service.create_card()
+        except Exception as e:
+            return {'message': str(e)}, 400
+
+        db.session.add(card_service.card)
+        db.session.commit()
+
+        return {'message': 'Card created', 'data': {'card': card_service.card.to_dict()}}, 201
+
+    @check_jwt_token
     def put(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
             return {'message': 'Only Admins can modify other cards !!'}, 403

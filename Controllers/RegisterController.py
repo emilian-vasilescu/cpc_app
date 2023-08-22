@@ -10,14 +10,14 @@ class RegisterController(Resource):
         try:
             user_service = UserService()
             user_service.data = request.form
-            user = user_service.create_user()
+            user_service.create_user()
         except Exception as e:
             return str(e), 400
 
-        db.session.add(user)
+        db.session.add(user_service.user)
         db.session.commit()
 
-        collection_service = CollectionService(user)
+        collection_service = CollectionService(user_service.user)
         collection_service.generate_collection()
 
-        return {'message': 'Successfully registered.', 'data': {'user': user.to_dict()}}, 201
+        return {'message': 'Successfully registered.', 'data': {'user': user_service.user.to_dict()}}, 201

@@ -1,5 +1,5 @@
 from sqlalchemy_serializer import SerializerMixin
-
+from Models.Transaction import Transaction
 from Models.link_tables import user_card_association
 from app import db
 
@@ -8,7 +8,7 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     # https://github.com/n0nSmoker/SQLAlchemy-serializer
-    serialize_rules = ('-cards.users', '-password',)
+    serialize_rules = ('-cards.users', '-sell_transactions.seller', 'buy_transactions.buyer', '-cards.transactions', '-password',)
 
     ADMIN = 'admin'
     USER = 'user'
@@ -21,7 +21,10 @@ class User(db.Model, SerializerMixin):
     budget = db.Column(db.Float)
     country = db.Column(db.String(250))
     password = db.Column(db.String(250))
+
     cards = db.relationship('Card', secondary=user_card_association, back_populates='users', lazy=True)
+    sell_transactions = db.relationship('Transaction', back_populates='seller', foreign_keys=[Transaction.seller_id])
+    buy_transactions = db.relationship('Transaction', back_populates='buyer', foreign_keys=[Transaction.buyer_id])
 
     def __init__(self, public_id, name, role, email, budget, country, password):
         self.public_id = public_id

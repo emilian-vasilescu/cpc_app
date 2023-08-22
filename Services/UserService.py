@@ -21,7 +21,7 @@ class UserService:
             .first()
         if not user:
             # database ORM object
-            return User(
+            self.user = User(
                 public_id=str(uuid.uuid4()),
                 name=name,
                 email=email,

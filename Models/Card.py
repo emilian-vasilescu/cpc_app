@@ -1,5 +1,5 @@
 from sqlalchemy_serializer import SerializerMixin
-
+from Models.Transaction import Transaction
 from Models.link_tables import user_card_association
 from app import db
 
@@ -7,14 +7,16 @@ from app import db
 class Card(db.Model, SerializerMixin):
     INITIAL_MARKET_VALUE = 100
     __tablename__ = 'cards'
-    serialize_rules = ('-users',)
+    serialize_rules = ('-users', '-transactions.card')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
     age = db.Column(db.Integer)
     skill_level = db.Column(db.Float)
     market_value = db.Column(db.Float)
+
     users = db.relationship('User', secondary=user_card_association, back_populates='cards', lazy=True)
+    transactions = db.relationship('Transaction', back_populates='card', lazy=True)
 
     def __init__(self, name, age, skill_level, market_value):
         self.name = name
