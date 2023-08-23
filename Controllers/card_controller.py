@@ -1,9 +1,9 @@
 from flask import request
 from flask_restful import Resource
 
-from Models.Card import Card
-from Models.User import User
-from Services.CardService import CardService
+from Models.card import Card
+from Models.user import User
+from Services.card_service import CardService
 from Services.Decorators.check_jwt_token import check_jwt_token
 from app import db
 

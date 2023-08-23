@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ move create/update cards and users logic to services">
-      <change afterPath="$PROJECT_DIR$/Controllers/TransactionController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Transaction.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Services/TransactionService.py" afterDir="false" />
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ create card&#10;+ transaction relationships with users and cards">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/CardController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/CardController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/RegisterController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/RegisterController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/CardService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/CardService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/UserService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/UserService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/CardController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/LoginController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/MyProfileController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/RegisterController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/TransactionController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserController.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/link_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user_card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CardService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/card_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/CollectionService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/collection_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/TransactionService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/transaction_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/UserService.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/init_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692631605226</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="+ create card&#10;+ transaction relationships with users and cards">
+      <created>1692720817101</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692720817101</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +173,7 @@
     <MESSAGE value="+ create card&#10;+ link cards to user&#10;+ async call to external api to populate skill level and player name on card&#10;+ drop/create script for tables&#10;+ serialize query results" />
     <MESSAGE value="+ my profile get/put&#10;+ many to many user_card&#10;+ user does not exist for id in token&#10;+ cards for user&#10;+ put/delete card&#10;+ country for user" />
     <MESSAGE value="+ move create/update cards and users logic to services" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ move create/update cards and users logic to services" />
+    <MESSAGE value="+ create card&#10;+ transaction relationships with users and cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ create card&#10;+ transaction relationships with users and cards" />
   </component>
 </project>

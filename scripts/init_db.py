@@ -1,14 +1,14 @@
-from Models.Transaction import Transaction
-from Models.link_tables import user_card_association
+from Models.market_transaction import MarketTransaction
+from Models.user_card import user_card_association
 from app import db, app
-from Models.Card import Card
-from Models.User import User
+from Models.card import Card
+from Models.user import User
 
 
 with app.app_context():
     tables = [
         user_card_association,
-        Transaction.__table__,
+        MarketTransaction.__table__,
         Card.__table__,
         User.__table__,
     ]

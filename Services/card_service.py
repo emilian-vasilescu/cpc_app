@@ -1,4 +1,4 @@
-from Models.Card import Card
+from Models.card import Card
 
 
 class CardService:

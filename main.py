@@ -1,10 +1,10 @@
 from flask_restful import Api
 
-from Controllers.CardController import CardController
-from Controllers.LoginController import LoginController
-from Controllers.MyProfileController import MyProfileController
-from Controllers.RegisterController import RegisterController
-from Controllers.UserController import UserController
+from Controllers.card_controller import CardController
+from Controllers.login_controller import LoginController
+from Controllers.my_profile_controller import MyProfileController
+from Controllers.register_controller import RegisterController
+from Controllers.user_controller import UserController
 from app import app
 
 api = Api(app)

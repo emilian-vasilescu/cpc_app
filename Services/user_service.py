@@ -1,6 +1,6 @@
 import uuid
 from werkzeug.security import generate_password_hash
-from Models.User import User
+from Models.user import User
 
 
 class UserService:

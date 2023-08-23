@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
-from Services.CollectionService import CollectionService
-from Services.UserService import UserService
+from Services.collection_service import CollectionService
+from Services.user_service import UserService
 from app import db
 
 

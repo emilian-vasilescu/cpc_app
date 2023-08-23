@@ -1,8 +1,8 @@
 from flask import request
 from flask_restful import Resource
-from Models.User import User
+from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
-from Services.UserService import UserService
+from Services.user_service import UserService
 from app import db
 
 

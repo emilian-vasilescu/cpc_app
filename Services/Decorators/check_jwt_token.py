@@ -4,7 +4,7 @@ from functools import wraps
 import jwt
 from flask import request, jsonify
 
-from Models.User import User
+from Models.user import User
 from app import app
 
 

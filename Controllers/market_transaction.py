@@ -3,7 +3,7 @@ from flask_restful import Resource
 from Services.Decorators.check_jwt_token import check_jwt_token
 
 
-class TransactionController(Resource):
+class MarketTransactionController(Resource):
     @check_jwt_token
     def get(self, current_user, transaction_id=None):
         pass

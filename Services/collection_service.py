@@ -3,7 +3,7 @@ import asyncio
 
 import requests as requests
 
-from Models.Card import Card
+from Models.card import Card
 from app import db
 
 
