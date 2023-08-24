@@ -15,7 +15,7 @@ class Card(db.Model, SerializerMixin):
     market_value = db.Column(db.Float)
 
     users = db.relationship('User', secondary=user_card_association, back_populates='cards', lazy=True)
-    transactions = db.relationship('Market_Transaction', back_populates='card', lazy=True)
+    transactions = db.relationship('MarketTransaction', back_populates='card', lazy=True)
 
     def __init__(self, name, age, skill_level, market_value):
         self.name = name

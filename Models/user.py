@@ -24,8 +24,8 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String(250))
 
     cards = db.relationship('Card', secondary=user_card_association, back_populates='users', lazy=True)
-    sell_transactions = db.relationship('Market_Transaction', back_populates='seller', foreign_keys=[MarketTransaction.seller_id])
-    buy_transactions = db.relationship('Market_Transaction', back_populates='buyer', foreign_keys=[MarketTransaction.buyer_id])
+    sell_transactions = db.relationship('MarketTransaction', back_populates='seller', foreign_keys=[MarketTransaction.seller_id])
+    buy_transactions = db.relationship('MarketTransaction', back_populates='buyer', foreign_keys=[MarketTransaction.buyer_id])
 
     def __init__(self, public_id, name, role, email, budget, country, password):
         self.public_id = public_id

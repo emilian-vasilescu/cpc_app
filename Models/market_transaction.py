@@ -11,7 +11,7 @@ class MarketTransaction(db.Model, SerializerMixin):
     SOLD = 'sold'
 
     # https://github.com/n0nSmoker/SQLAlchemy-serializer
-    serialize_rules = ('-seller.sell_transactions', '-buyer.buy_transactions', '-card.transactions')
+    serialize_rules = ('-seller', '-buyer.buy_transactions', '-card.transactions')
 
     id = db.Column(db.Integer, primary_key=True)
     asked_value = db.Column(db.Float)
