@@ -1,12 +1,12 @@
 from flask import request
-from flask_restful import Resource
+from Controllers.base_controller import BaseController
 from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
 from Services.user_service import UserService
 from app import db
 
 
-class UserController(Resource):
+class UserController(BaseController):
 
     @check_jwt_token
     def get(self, current_user, user_id=None):
@@ -22,11 +22,13 @@ class UserController(Resource):
                 users.append(user)
 
         else:
-            users = User.query.all()
+            users = User.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
         return {
             'data': {
-                'users': [user.to_dict() for user in users]
+                'users': [user.to_dict() for user in users],
+                'page': users.page,
+                'total': users.total
             }
         }
 

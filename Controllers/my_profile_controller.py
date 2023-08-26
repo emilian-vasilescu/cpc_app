@@ -1,17 +1,19 @@
 from flask import request
 from flask_restful import Resource
+
+from Controllers.base_controller import BaseController
 from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
 from Services.user_service import UserService
 from app import db
 
 
-class MyProfileController(Resource):
+class MyProfileController(BaseController):
     @check_jwt_token
     def get(self, current_user):
         return {
             'data': {
-                'users': [current_user.to_dict()]
+                'user': current_user.to_dict()
             }
         }
 

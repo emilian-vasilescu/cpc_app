@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ crud transactions">
+      <change afterPath="$PROJECT_DIR$/Controllers/base_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/card_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/my_profile_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692787734070</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="+ crud transactions">
+      <created>1692860273657</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692860273657</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +179,7 @@
     <MESSAGE value="+ move create/update cards and users logic to services" />
     <MESSAGE value="+ create card&#10;+ transaction relationships with users and cards" />
     <MESSAGE value="+ refactor names&#10;+ transaction status column" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ refactor names&#10;+ transaction status column" />
+    <MESSAGE value="+ crud transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ crud transactions" />
   </component>
 </project>

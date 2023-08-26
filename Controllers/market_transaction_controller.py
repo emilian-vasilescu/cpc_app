@@ -1,6 +1,5 @@
 from flask import request
-from flask_restful import Resource
-
+from Controllers.base_controller import BaseController
 from Models.market_transaction import MarketTransaction
 from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
@@ -8,25 +7,27 @@ from Services.market_transaction_service import MarketTransactionService
 from app import db
 
 
-class MarketTransactionController(Resource):
+class MarketTransactionController(BaseController):
     @check_jwt_token
     def get(self, current_user, transaction_id=None):
         # if user is not admin, return his own data
         if current_user.role != User.ADMIN:
             user_id = current_user.id
 
-        # @todo filter by status
+        # @todo filter by status and by user
         transactions = []
         if type(transaction_id) is int:
             transaction = MarketTransaction.query.get(transaction_id)
             if transaction:
                 transactions.append(transaction)
         else:
-            transactions = MarketTransaction.query.all()
+            transactions = MarketTransaction.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
         return {
             'data': {
-                'transactions': [transaction.to_dict() for transaction in transactions]
+                'transactions': [transaction.to_dict() for transaction in transactions],
+                'page': transactions.page,
+                'total': transactions.total
             }
         }
 

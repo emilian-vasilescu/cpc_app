@@ -1,6 +1,5 @@
 from flask import request
-from flask_restful import Resource
-
+from Controllers.base_controller import BaseController
 from Models.card import Card
 from Models.user import User
 from Services.card_service import CardService
@@ -8,24 +7,26 @@ from Services.Decorators.check_jwt_token import check_jwt_token
 from app import db
 
 
-class CardController(Resource):
+class CardController(BaseController):
     @check_jwt_token
     def get(self, current_user, card_id=None, user_id=None):
 
-        if type(user_id) is int:
-            cards = Card.query.join(Card.users).filter(User.id == user_id).all()
-        elif type(card_id) is int:
-            cards = Card.query.filter_by(id=card_id)
-        else:
-            cards = Card.query.all()
-
         if current_user.role != User.ADMIN:
-            # filter records if is not admin
-            cards = [card for card in cards if card.user_id == current_user.id]
+            return {'message': 'Only Admins can see other cards !!'}, 403
+
+        if type(user_id) is int:
+            cards = Card.query.join(Card.users).filter(User.id == user_id).paginate(page=self.get_current_page(), per_page=self.get_per_page())
+        elif type(card_id) is int:
+            cards = Card.query.filter_by(id=card_id).paginate(page=self.get_current_page(), per_page=self.get_per_page())
+        else:
+            cards = Card.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
+
 
         return {
             'data': {
-                'cards': [card.to_dict() for card in cards]
+                'cards': [card.to_dict() for card in cards],
+                'page': cards.page,
+                'total': cards.total
             }
         }
 

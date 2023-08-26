@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta
 import jwt
 from flask import request
-from flask_restful import Resource
 from werkzeug.security import check_password_hash
+
+from Controllers.base_controller import BaseController
 from Models.user import User
 from app import app
 
 
-class LoginController(Resource):
+class LoginController(BaseController):
     def post(self):
         auth = request.form
 

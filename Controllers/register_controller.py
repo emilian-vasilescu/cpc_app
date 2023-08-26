@@ -1,11 +1,11 @@
 from flask import request
-from flask_restful import Resource
+from Controllers.base_controller import BaseController
 from Services.collection_service import CollectionService
 from Services.user_service import UserService
 from app import db
 
 
-class RegisterController(Resource):
+class RegisterController(BaseController):
     def post(self):
         try:
             user_service = UserService()
