@@ -10,7 +10,7 @@ from app import db
 class CollectionService:
     COLLECTION_COUNT = 5
     RANDOM_NAME_API = 'https://random-data-api.com/api/v2/users'
-    RANDOM_SKILL_VALUE_API = 'https://www.random.org/integers/?num=1&min=10&max=100&col=1&base=10&format=plain'
+    RANDOM_SKILL_LEVEL_API = 'https://www.random.org/integers/?num=1&min=10&max=100&col=1&base=10&format=plain'
     loop = asyncio.get_event_loop()
 
     def __init__(self, user):
@@ -41,9 +41,9 @@ class CollectionService:
             return 'Baseball Player'
 
     async def get_skill_level(self):
-        response = await self.loop.run_in_executor(None, requests.get, self.RANDOM_SKILL_VALUE_API)
+        response = await self.loop.run_in_executor(None, requests.get, self.RANDOM_SKILL_LEVEL_API)
         if response.ok:
-            skill_value = int(response.text.strip())
+            skill_level = int(response.text.strip())
         else:
-            skill_value = random.randint(10, 70)
-        return skill_value
+            skill_level = random.randint(10, 70)
+        return skill_level

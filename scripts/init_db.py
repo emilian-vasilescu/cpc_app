@@ -1,4 +1,5 @@
 from Models.market_transaction import MarketTransaction
+from Models.market_transaction_train import MarketTransactionTrain
 from Models.user_card import user_card_association
 from app import db, app
 from Models.card import Card
@@ -11,6 +12,7 @@ with app.app_context():
         MarketTransaction.__table__,
         Card.__table__,
         User.__table__,
+        MarketTransactionTrain.__table__
     ]
     # drop all tables
 

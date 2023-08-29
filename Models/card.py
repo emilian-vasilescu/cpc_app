@@ -1,5 +1,8 @@
 from sqlalchemy_serializer import SerializerMixin
+# from Models.user import User
+# from Models.market_transaction import MarketTransaction
 from Models.user_card import user_card_association
+
 from app import db
 
 

@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ crud transactions">
-      <change afterPath="$PROJECT_DIR$/Controllers/base_controller.py" afterDir="false" />
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ pagination for endpoints">
+      <change afterPath="$PROJECT_DIR$/ML/machine_learning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/market_transaction_train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/card_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/my_profile_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/collection_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/collection_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/init_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +57,7 @@
       <recent name="$PROJECT_DIR$/Resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ML" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/Resources" />
     </key>
@@ -156,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692860273657</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="+ pagination for endpoints">
+      <created>1693036836267</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693036836267</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +189,7 @@
     <MESSAGE value="+ create card&#10;+ transaction relationships with users and cards" />
     <MESSAGE value="+ refactor names&#10;+ transaction status column" />
     <MESSAGE value="+ crud transactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ crud transactions" />
+    <MESSAGE value="+ pagination for endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ pagination for endpoints" />
   </component>
 </project>

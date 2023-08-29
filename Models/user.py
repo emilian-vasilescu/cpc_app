@@ -1,5 +1,4 @@
 from sqlalchemy_serializer import SerializerMixin
-
 from Models.market_transaction import MarketTransaction
 from Models.user_card import user_card_association
 from app import db
@@ -9,7 +8,8 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     # https://github.com/n0nSmoker/SQLAlchemy-serializer
-    serialize_rules = ('-cards.users', '-sell_transactions.seller', 'buy_transactions.buyer', '-cards.transactions', '-password',)
+    serialize_rules = ('-cards.users', '-sell_transactions.seller', '-sell_transactions.buyer',
+                       '-buy_transactions.buyer', '-buy_transactions.seller', '-cards.transactions', '-password',)
 
     ADMIN = 'admin'
     USER = 'user'

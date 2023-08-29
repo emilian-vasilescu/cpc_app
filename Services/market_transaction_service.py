@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from ML.machine_learning import CardMarketValueGenerator
 from Models.card import Card
 from Models.market_transaction import MarketTransaction
 from Models.user import User
@@ -101,8 +102,15 @@ class MarketTransactionService:
         self.transaction.modified_at = datetime.now()
 
         self.user.budget = self.user.budget - self.transaction.asked_value
+        seller.budget = seller.budget + self.transaction.asked_value
+
         self.user.cards.append(self.card)
         seller.cards.remove(self.card)
+
+        generator = CardMarketValueGenerator()
+        previous_transactions = MarketTransaction.query.filter_by(card_id=self.card.id, status=MarketTransaction.SOLD).count()
+        self.card.market_value = generator.predict(self.card.age, self.card.skill_level, previous_transactions)
+
 
     def delete_transaction(self, current_user):
 

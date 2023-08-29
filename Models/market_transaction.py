@@ -1,5 +1,6 @@
 from datetime import datetime
-
+# from Models.user import User
+# from Models.card import Card
 from sqlalchemy_serializer import SerializerMixin
 from app import db
 
@@ -11,7 +12,7 @@ class MarketTransaction(db.Model, SerializerMixin):
     SOLD = 'sold'
 
     # https://github.com/n0nSmoker/SQLAlchemy-serializer
-    serialize_rules = ('-seller', '-buyer.buy_transactions', '-card.transactions')
+    serialize_rules = ('-seller', '-buyer', '-card.transactions')
 
     id = db.Column(db.Integer, primary_key=True)
     asked_value = db.Column(db.Float)
