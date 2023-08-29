@@ -2,7 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from Models.market_transaction import MarketTransaction
 from Models.user_card import user_card_association
 from app import db
-
+from Models.card import Card
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'

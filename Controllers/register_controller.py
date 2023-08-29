@@ -1,5 +1,6 @@
 from flask import request
 from Controllers.base_controller import BaseController
+from Models.user import User
 from Services.collection_service import CollectionService
 from Services.user_service import UserService
 from app import db
@@ -8,9 +9,17 @@ from app import db
 class RegisterController(BaseController):
     def post(self):
         try:
-            user_service = UserService()
-            user_service.data = request.form
-            user_service.create_user()
+            user = User.query \
+                .filter_by(email=request.form.get('email')) \
+                .first()
+
+            if not user:
+                user_service = UserService()
+                user_service.data = request.form
+                user_service.create_user()
+            else:
+                raise Exception('User already exists. Please Log in.')
+
         except Exception as e:
             return str(e), 400
 

@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ pagination for endpoints">
-      <change afterPath="$PROJECT_DIR$/ML/machine_learning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/market_transaction_train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UnitTests/user_service_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/collection_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/collection_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/init_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/user_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test" />
+        <entry key="$PROJECT_DIR$" value="emlian-refactor" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
   <component name="ProjectId" id="2TheHQgUTCqbrOmghyD2HsgvJJW" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,7 +62,7 @@
       <recent name="$PROJECT_DIR$/Resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Python tests for user_service_test.UserServiceTest.test_user_details">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="cpc_app" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,6 +85,45 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for user_service_test.UserServiceTest.test_user_details" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="cpc_app" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UnitTests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;user_service_test.UserServiceTest.test_user_details&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in user_service_test.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="cpc_app" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UnitTests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/UnitTests/user_service_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python tests.Python tests for user_service_test.UserServiceTest.test_user_details" />
+      <item itemvalue="Python tests.Python tests in user_service_test.py" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for user_service_test.UserServiceTest.test_user_details" />
+        <item itemvalue="Python tests.Python tests in user_service_test.py" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -165,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693036836267</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="+ pagination for endpoints">
+      <option name="closed" value="true" />
+      <created>1693333411914</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693333411914</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

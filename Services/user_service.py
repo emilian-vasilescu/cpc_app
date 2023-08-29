@@ -16,22 +16,16 @@ class UserService:
         if not all([name, email, role, country, password]):
             raise Exception('Name, role, email and password are mandatory.')
 
-        user = User.query \
-            .filter_by(email=email) \
-            .first()
-        if not user:
-            # database ORM object
-            self.user = User(
-                public_id=str(uuid.uuid4()),
-                name=name,
-                email=email,
-                role=role,
-                budget=User.INITIAL_BUDGET,
-                country=country,
-                password=generate_password_hash(password)
-            )
-        else:
-            raise Exception('User already exists. Please Log in.')
+        # database ORM object
+        self.user = User(
+            public_id=str(uuid.uuid4()),
+            name=name,
+            email=email,
+            role=role,
+            budget=User.INITIAL_BUDGET,
+            country=country,
+            password=generate_password_hash(password)
+        )
 
     def update_user(self):
         if not self.user:
