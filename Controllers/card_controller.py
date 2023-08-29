@@ -1,5 +1,6 @@
 from flask import request
 from Controllers.base_controller import BaseController
+from Exceptions.user_role_exception import UserRoleException
 from Models.card import Card
 from Models.user import User
 from Services.card_service import CardService
@@ -12,28 +13,29 @@ class CardController(BaseController):
     def get(self, current_user, card_id=None, user_id=None):
 
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can see other cards !!'}, 403
+            raise UserRoleException(User.ADMIN)
 
         if type(user_id) is int:
-            cards = Card.query.join(Card.users).filter(User.id == user_id).paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            cards = Card.get_user_cards(user_id)
         elif type(card_id) is int:
-            cards = Card.query.filter_by(id=card_id).paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            cards = Card.get_card_by_id(card_id)
         else:
-            cards = Card.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            cards = Card.get_all_cards()
 
+        cards_per_page = cards.paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
         return {
             'data': {
-                'cards': [card.to_dict() for card in cards],
-                'page': cards.page,
-                'total': cards.total
+                'cards': [card.to_dict() for card in cards_per_page],
+                'page': cards_per_page.page,
+                'total': cards_per_page.total
             }
         }
 
     @check_jwt_token
     def post(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can create cards !!'}, 403
+            raise UserRoleException(User.ADMIN)
 
         try:
             card_service = CardService()
@@ -50,7 +52,7 @@ class CardController(BaseController):
     @check_jwt_token
     def put(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can modify other cards !!'}, 403
+            raise UserRoleException(User.ADMIN)
 
         if type(card_id) is not int:
             return {'message': 'Provide a card id !!'}, 403
@@ -74,7 +76,7 @@ class CardController(BaseController):
     @check_jwt_token
     def delete(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can delete cards !!'}, 403
+            raise UserRoleException(User.ADMIN)
         if type(card_id) is not int:
             return {'message': 'Provide a card id !!'}, 403
 
