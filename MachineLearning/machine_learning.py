@@ -21,7 +21,6 @@ class CardMarketValueGenerator:
         try:
             self.model = joblib.load(self.model_file_name)
         except Exception as e:
-            print(str(e))
             self.generate_model()
 
     def predict(self, age, skill_level, previous_transactions):
@@ -46,12 +45,11 @@ class CardMarketValueGenerator:
         predictions = self.model.predict(input_data_test)
 
         score = self.model.score(input_data_test, output_data_test)
-        print("Predictions:", predictions)
-        print("Score:", score)
 
         if score > 0.75:
             self.save_model()
-
+        else:
+            self.generate_model()
 
     def get_cards_data(self):
         try:

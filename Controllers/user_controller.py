@@ -1,5 +1,6 @@
 from flask import request
 from Controllers.base_controller import BaseController
+from Exceptions.exceptions import AccessDeniedException, ValidationFieldsException, NotFoundException
 from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
 from Services.user_service import UserService
@@ -35,10 +36,10 @@ class UserController(BaseController):
     @check_jwt_token
     def put(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can modify other users !!'}, 400
+            raise AccessDeniedException('Only Admins can modify other users !!')
 
-        if type(user_id) is not int:
-            return {'message': 'Provide an user id !!'}, 400
+        if not user_id:
+            raise ValidationFieldsException('Provide an user id !!')
 
         try:
             user = User.query \
@@ -50,7 +51,7 @@ class UserController(BaseController):
             user_service.data = request.form
             user_service.update_user()
         except Exception as e:
-            return {'message': str(e)}, 400
+            raise e
 
         db.session.commit()
 
@@ -59,9 +60,9 @@ class UserController(BaseController):
     @check_jwt_token
     def delete(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            return {'message': 'Only Admins can delete users !!'}, 403
-        if type(user_id) is not int:
-            return {'message': 'Provide an user id !!'}, 403
+            raise AccessDeniedException('Only Admins can delete users !!')
+        if not user_id:
+            raise ValidationFieldsException('Provide an user id !!')
 
         # delete user
         user = User.query \
@@ -69,7 +70,7 @@ class UserController(BaseController):
             .first()
 
         if not user:
-            return {'message': 'User does not exist'}, 404
+            raise NotFoundException('User does not exist')
 
         user.cards.clear()
         db.session.delete(user)

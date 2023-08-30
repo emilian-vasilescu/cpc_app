@@ -2,8 +2,9 @@
 from functools import wraps
 
 import jwt
-from flask import request, jsonify
+from flask import request
 
+from Exceptions.exceptions import AuthenticationException
 from Models.user import User
 from app import app
 
@@ -17,7 +18,7 @@ def check_jwt_token(f):
             token = request.headers['x-access-token']
         # return 401 if token is not passed
         if not token:
-            return {'error': 'Token is missing !!'}, 401
+            raise AuthenticationException('Token is missing !!')
 
         try:
             # decoding the payload to fetch the stored details
@@ -27,10 +28,10 @@ def check_jwt_token(f):
                 .first()
 
             if current_user is None:
-                raise Exception('Token is ok but, user doesn\'t exist')
+                raise AuthenticationException('Token is ok but, user doesn\'t exist')
 
         except Exception as e:
-            return {'error': str(e)}, 401
+            return AuthenticationException(str(e))
         # returns the current logged in users context to the routes
         return f(*args, current_user, **kwargs)
 

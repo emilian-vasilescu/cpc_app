@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from Exceptions.exceptions import ValidationFieldsException, AccessDeniedException, NotFoundException
 from MachineLearning.machine_learning import CardMarketValueGenerator
 from Models.card import Card
 from Models.market_transaction import MarketTransaction
@@ -18,10 +19,10 @@ class MarketTransactionService:
 
         # @todo Validate data
         if not all([card_id, seller_id, asked_value]):
-            raise Exception('card_id, seller_id and asked_value are mandatory.')
+            raise ValidationFieldsException('card_id, seller_id and asked_value are mandatory.')
 
         if current_user.role != User.ADMIN and current_user.id != seller_id:
-            raise Exception('Only admins can add other user cards on market')
+            raise AccessDeniedException('Only admins can add other user cards on market')
 
         self.user = User.query \
             .filter_by(id=seller_id) \
@@ -36,16 +37,16 @@ class MarketTransactionService:
             .first()
 
         if self.transaction:
-            raise Exception('This card is already posted on market by this user!')
+            raise ValidationFieldsException('This card is already posted on market by this user!')
 
         if not self.user:
-            raise Exception('User does not exist!')
+            raise NotFoundException('User does not exist!')
 
         if not self.card:
-            raise Exception('Card does not exist!')
+            raise NotFoundException('Card does not exist!')
 
         if not any([c.id == self.card.id for c in self.user.cards]):
-            raise Exception('User does not have the card!')
+            raise NotFoundException('User does not have the card!')
 
         self.transaction = MarketTransaction(
             asked_value=asked_value,
@@ -57,45 +58,44 @@ class MarketTransactionService:
     def edit_transaction(self, current_user):
         buyer_id = self.data.get('buyer_id')
 
-        # @todo Validate data
         if not buyer_id:
-            raise Exception('buyer_id is mandatory.')
+            raise ValidationFieldsException('buyer_id is mandatory.')
 
         if current_user.role != User.ADMIN and current_user.id != buyer_id:
-            raise Exception('Only admins do purchases in the name of other users')
+            raise AccessDeniedException('Only admins do purchases in the name of other users')
 
         self.user = User.query \
             .filter_by(id=buyer_id) \
             .first()
 
         if not self.transaction:
-            raise Exception('This transaction does not exists on market')
+            raise NotFoundException('This transaction does not exists on market')
 
         if self.transaction.status != MarketTransaction.ON_SELL:
-            raise Exception('This transaction is not on sell on market')
+            raise ValidationFieldsException('This transaction is not on sell on market')
 
         if not self.user:
-            raise Exception('Buyer does not exist!')
+            raise NotFoundException('Buyer does not exist!')
 
         if self.user.budget < self.transaction.asked_value:
-            raise Exception('User does not have enough money!')
+            raise ValidationFieldsException('User does not have enough money!')
 
         self.card = Card.query \
             .filter_by(id=self.transaction.card_id) \
             .first()
 
         if not self.card:
-            raise Exception('Card does not exist!')
+            raise NotFoundException('Card does not exist!')
 
         if any([c.id == self.card.id for c in self.user.cards]):
-            raise Exception('User already have this card!')
+            raise ValidationFieldsException('User already have this card!')
 
         seller = User.query \
             .filter_by(id=self.transaction.seller_id) \
             .first()
 
         if not seller:
-            raise Exception('Seller does not exist!')
+            raise NotFoundException('Seller does not exist!')
 
         self.transaction.buyer_id = self.user.id
         self.transaction.status = MarketTransaction.SOLD
@@ -108,20 +108,20 @@ class MarketTransactionService:
         seller.cards.remove(self.card)
 
         generator = CardMarketValueGenerator()
-        previous_transactions = MarketTransaction.query.filter_by(card_id=self.card.id, status=MarketTransaction.SOLD).count()
+        previous_transactions = MarketTransaction.query.filter_by(card_id=self.card.id,
+                                                                  status=MarketTransaction.SOLD).count()
         self.card.market_value = generator.predict(self.card.age, self.card.skill_level, previous_transactions)
-
 
     def delete_transaction(self, current_user):
 
         if not self.transaction:
-            raise Exception('This transaction does not exists on market')
+            raise NotFoundException('This transaction does not exists on market')
 
         if current_user.role != User.ADMIN and current_user.id != self.transaction.seller_id:
-            raise Exception('Only admins can cancel other market transactions')
+            raise AccessDeniedException('Only admins can cancel other market transactions')
 
         if self.transaction.status != MarketTransaction.ON_SELL:
-            raise Exception('Only on sell transactions can be canceled')
+            raise ValidationFieldsException('Only on sell transactions can be canceled')
 
         self.transaction.status = MarketTransaction.CANCELED
 

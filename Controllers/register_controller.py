@@ -12,7 +12,7 @@ class RegisterController(BaseController):
             user_service.data = request.form
             user_service.create_user()
         except Exception as e:
-            return str(e), 400
+            raise e
 
         db.session.add(user_service.user)
         db.session.commit()

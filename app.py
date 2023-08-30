@@ -1,5 +1,6 @@
 from flask import Flask, json
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug import Response
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
@@ -12,13 +13,17 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 
-@app.errorhandler(HTTPException)
+@app.errorhandler(Exception)
 def handle_exception(e):
-    response = e.get_response()
+    response = Response()
+    if hasattr(e, 'code'):
+        code = e.code
+    else:
+        code = 500
+
     response.data = json.dumps({
-        "code": e.code,
-        "name": e.name,
-        "message": e.description,
+        "code": code,
+        "message": e.message,
     })
     response.content_type = "application/json"
     return response

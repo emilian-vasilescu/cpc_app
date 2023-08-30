@@ -1,3 +1,4 @@
+from Exceptions.exceptions import ValidationFieldsException, NotFoundException
 from Models.card import Card
 
 
@@ -11,7 +12,7 @@ class CardService:
             'market_value'), self.data.get('age')
 
         if not all([skill_level, name, market_value, age]):
-            raise Exception('At least one of skill_level, name, market_value or age is mandatory.')
+            raise ValidationFieldsException('At least one of skill_level, name, market_value or age is mandatory.')
 
         self.card = Card(
             skill_level=skill_level,
@@ -22,15 +23,14 @@ class CardService:
 
     def update_card(self):
         if not self.card:
-            raise Exception('Card does not exist')
+            raise NotFoundException('Card does not exist')
 
         skill_level, name, market_value, age = self.data.get('skill_level'), self.data.get('name'), self.data.get(
             'market_value'), self.data.get('age')
 
         if not any([skill_level, name, market_value, age]):
-            return {'message': 'At least one of skill_level, name, market_value or age is mandatory.'}, 400
+            return ValidationFieldsException('At least one of skill_level, name, market_value or age is mandatory.')
 
-        # @todo Validate data
         if skill_level:
             self.card.skill_level = skill_level
         if name:

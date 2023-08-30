@@ -1,5 +1,7 @@
 import uuid
 from werkzeug.security import generate_password_hash
+
+from Exceptions.exceptions import NotFoundException, ValidationFieldsException
 from Models.user import User
 
 
@@ -12,9 +14,8 @@ class UserService:
             'role'), self.data.get('country')
         password = self.data.get('password')
 
-        # @todo Validate data
         if not all([name, email, role, country, password]):
-            raise Exception('Name, role, email and password are mandatory.')
+            raise ValidationFieldsException('Name, role, email and password are mandatory.')
 
         user = User.query \
             .filter_by(email=email) \
@@ -31,20 +32,19 @@ class UserService:
                 password=generate_password_hash(password)
             )
         else:
-            raise Exception('User already exists. Please Log in.')
+            raise ValidationFieldsException('User already exists. Please Log in.')
 
     def update_user(self):
         if not self.user:
-            raise Exception('User does not exist')
+            raise NotFoundException('User does not exist')
 
         name, email, role, country = self.data.get('name'), self.data.get('email'), self.data.get(
             'role'), self.data.get('country')
         password = self.data.get('password')
 
         if not any([name, email, role, country, password]):
-            raise Exception('At least one of Name, role, email, country or password is mandatory.')
+            raise ValidationFieldsException('At least one of Name, role, email, country or password is mandatory.')
 
-        # @todo Validate data
         if name:
             self.user.name = name
         if email:
@@ -58,13 +58,13 @@ class UserService:
 
     def update_my_profile(self):
         if not self.user:
-            raise Exception('User does not exist')
+            raise NotFoundException('User does not exist')
 
         name, country = self.data.get('name'), self.data.get('country')
         password = self.data.get('password')
 
         if not any([name, country, password]):
-            raise Exception('At least one of Name, country or password is mandatory.')
+            raise ValidationFieldsException('At least one of Name, country or password is mandatory.')
 
         # @todo Validate data
         if name:

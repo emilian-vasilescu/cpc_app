@@ -14,7 +14,6 @@ class MarketTransactionController(BaseController):
         if current_user.role != User.ADMIN:
             user_id = current_user.id
 
-        # @todo filter by status and by user
         transactions = []
         if type(transaction_id) is int:
             transaction = MarketTransaction.query.get(transaction_id)
@@ -38,7 +37,7 @@ class MarketTransactionController(BaseController):
             market_transaction_service.data = request.form
             market_transaction_service.create_transaction(current_user)
         except Exception as e:
-            return {'message': str(e)}, 400
+            raise e
 
         db.session.add(market_transaction_service.transaction)
         db.session.commit()
@@ -56,7 +55,7 @@ class MarketTransactionController(BaseController):
             market_transaction_service.data = request.form
             market_transaction_service.edit_transaction(current_user)
         except Exception as e:
-            return {'message': str(e)}, 400
+            raise e
 
         db.session.commit()
 
@@ -73,7 +72,7 @@ class MarketTransactionController(BaseController):
             market_transaction_service.data = request.form
             market_transaction_service.delete_transaction(current_user)
         except Exception as e:
-            return {'message': str(e)}, 400
+            raise e
 
         db.session.commit()
 

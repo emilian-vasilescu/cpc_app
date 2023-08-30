@@ -30,7 +30,7 @@ class MyProfileController(BaseController):
             user_service.data = request.form
             user_service.update_my_profile()
         except Exception as e:
-            return {'message': str(e)}, 400
+           raise e
 
         db.session.commit()
 

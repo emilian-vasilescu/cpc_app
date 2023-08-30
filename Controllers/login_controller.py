@@ -4,6 +4,7 @@ from flask import request
 from werkzeug.security import check_password_hash
 
 from Controllers.base_controller import BaseController
+from Exceptions.exceptions import AuthenticationException
 from Models.user import User
 from app import app
 
@@ -13,14 +14,14 @@ class LoginController(BaseController):
         auth = request.form
 
         if not auth or not auth.get('email') or not auth.get('password'):
-            return {'message': 'Login email and password are required !!'}, 401
+            return AuthenticationException('Login email and password are required !!')
 
         user = User.query \
             .filter_by(email=auth.get('email')) \
             .first()
 
         if not user:
-            return {'message': 'User does not exist !!'}, 401
+            raise AuthenticationException('User does not exist !!')
 
         if check_password_hash(user.password, auth.get('password')):
             token = jwt.encode({
@@ -29,4 +30,4 @@ class LoginController(BaseController):
             }, app.config['SECRET_KEY'])
 
             return {'data': {'token': token, 'user': user.to_dict()}}, 201
-        return {'message': 'Wrong Password !!'}, 403
+        return AuthenticationException('Wrong Password !!', 403)
