@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ pagination for endpoints">
-      <change afterPath="$PROJECT_DIR$/ML/machine_learning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/market_transaction_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/collection_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/collection_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/init_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/init_db.py" afterDir="false" />
-    </list>
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ machine learning" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693036836267</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="+ machine learning">
+      <created>1693306172129</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693306172129</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +187,7 @@
     <MESSAGE value="+ refactor names&#10;+ transaction status column" />
     <MESSAGE value="+ crud transactions" />
     <MESSAGE value="+ pagination for endpoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ pagination for endpoints" />
+    <MESSAGE value="+ machine learning" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ machine learning" />
   </component>
 </project>

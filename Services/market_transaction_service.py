@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from ML.machine_learning import CardMarketValueGenerator
+from MachineLearning.machine_learning import CardMarketValueGenerator
 from Models.card import Card
 from Models.market_transaction import MarketTransaction
 from Models.user import User
