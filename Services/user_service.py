@@ -9,10 +9,13 @@ class UserService:
     _user = None
     _data = None
 
-    def create_user(self):
+    def create_user(self, current_user=None):
         name, email, role, country = self.data.get('name'), self.data.get('email'), self.data.get(
             'role'), self.data.get('country')
         password = self.data.get('password')
+
+        if not current_user or current_user.role != User.ADMIN:
+            role = User.USER
 
         if not all([name, email, role, country, password]):
             raise ValidationFieldsException('Name, role, email and password are mandatory.')

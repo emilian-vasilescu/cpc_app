@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ gitignore">
-      <change afterPath="$PROJECT_DIR$/Exceptions/exceptions.py" afterDir="false" />
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ move queries in model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/card_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/my_profile_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/machine_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/machine_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/card_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/card_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/user_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693388343529</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="+ move queries in model">
+      <created>1693405438981</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1693405438981</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +207,7 @@
     <MESSAGE value="+ pagination for endpoints" />
     <MESSAGE value="+ machine learning" />
     <MESSAGE value="+ gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ gitignore" />
+    <MESSAGE value="+ move queries in model" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ move queries in model" />
   </component>
 </project>

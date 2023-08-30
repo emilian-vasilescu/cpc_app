@@ -3,6 +3,7 @@ from Controllers.base_controller import BaseController
 from Exceptions.exceptions import AccessDeniedException, ValidationFieldsException, NotFoundException
 from Models.user import User
 from Services.Decorators.check_jwt_token import check_jwt_token
+from Services.collection_service import CollectionService
 from Services.user_service import UserService
 from app import db
 
@@ -32,6 +33,26 @@ class UserController(BaseController):
                 'total': users.total
             }
         }
+
+    @check_jwt_token
+    def post(self, current_user, user_id=None):
+        if current_user.role != User.ADMIN:
+            raise AccessDeniedException('Only Admins can create other users !!')
+
+        try:
+            user_service = UserService()
+            user_service.data = request.form
+            user_service.create_user(current_user=current_user)
+        except Exception as e:
+            raise e
+
+        db.session.add(user_service.user)
+        db.session.commit()
+
+        collection_service = CollectionService(user_service.user)
+        collection_service.generate_collection()
+
+        return {'message': 'Successfully registered.', 'data': {'user': user_service.user.to_dict()}}, 201
 
     @check_jwt_token
     def put(self, current_user, user_id=None):
