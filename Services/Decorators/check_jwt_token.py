@@ -23,9 +23,7 @@ def check_jwt_token(f):
         try:
             # decoding the payload to fetch the stored details
             data = jwt.decode(jwt=token, key=app.config['SECRET_KEY'], algorithms="HS256")
-            current_user = User.query \
-                .filter_by(public_id=data['public_id']) \
-                .first()
+            current_user = User.get_user_by_public_id(data['public_id'])
 
             if current_user is None:
                 raise AuthenticationException('Token is ok but, user doesn\'t exist')

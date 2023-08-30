@@ -1,5 +1,5 @@
 from sqlalchemy_serializer import SerializerMixin
-# from Models.user import User
+from Models.user import User
 # from Models.market_transaction import MarketTransaction
 from Models.user_card import user_card_association
 
@@ -25,3 +25,15 @@ class Card(db.Model, SerializerMixin):
         self.age = age
         self.skill_level = skill_level
         self.market_value = market_value
+
+    @staticmethod
+    def get_user_cards(user_id):
+        return Card.query.join(Card.users).filter(User.id == user_id)
+
+    @staticmethod
+    def get_card_by_id(card_id):
+        return Card.query.filter_by(id=card_id)
+
+    @staticmethod
+    def get_all_cards():
+        return Card.query

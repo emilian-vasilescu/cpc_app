@@ -45,5 +45,5 @@ class CollectionService:
         if response.ok:
             skill_level = int(response.text.strip())
         else:
-            skill_level = random.randint(10, 70)
+            skill_level = random.randint(10, 100)
         return skill_level

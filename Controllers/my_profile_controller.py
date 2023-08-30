@@ -21,10 +21,7 @@ class MyProfileController(BaseController):
     def put(self, current_user):
 
         try:
-            user = User.query \
-                .filter_by(id=current_user.id) \
-                .first()
-
+            user = User.get_user_by_id(current_user.id)
             user_service = UserService()
             user_service.user = user
             user_service.data = request.form

@@ -16,11 +16,11 @@ class MarketTransactionController(BaseController):
 
         transactions = []
         if type(transaction_id) is int:
-            transaction = MarketTransaction.query.get(transaction_id)
+            transaction = MarketTransaction.get_transaction_by_id(transaction_id)
             if transaction:
                 transactions.append(transaction)
         else:
-            transactions = MarketTransaction.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            transactions = MarketTransaction.get_all_transactions().paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
         return {
             'data': {
@@ -49,9 +49,7 @@ class MarketTransactionController(BaseController):
     def put(self, current_user, transaction_id=None):
         try:
             market_transaction_service = MarketTransactionService()
-            market_transaction_service.transaction = MarketTransaction.query \
-                .filter_by(id=transaction_id) \
-                .first()
+            market_transaction_service.transaction = MarketTransaction.get_transaction_by_id(transaction_id)
             market_transaction_service.data = request.form
             market_transaction_service.edit_transaction(current_user)
         except Exception as e:
@@ -66,9 +64,7 @@ class MarketTransactionController(BaseController):
     def delete(self, current_user, transaction_id=None):
         try:
             market_transaction_service = MarketTransactionService()
-            market_transaction_service.transaction = MarketTransaction.query \
-                .filter_by(id=transaction_id) \
-                .first()
+            market_transaction_service.transaction = MarketTransaction.get_transaction_by_id(transaction_id)
             market_transaction_service.data = request.form
             market_transaction_service.delete_transaction(current_user)
         except Exception as e:

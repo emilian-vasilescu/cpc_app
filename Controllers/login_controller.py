@@ -16,9 +16,7 @@ class LoginController(BaseController):
         if not auth or not auth.get('email') or not auth.get('password'):
             return AuthenticationException('Login email and password are required !!')
 
-        user = User.query \
-            .filter_by(email=auth.get('email')) \
-            .first()
+        user = User.get_user_by_email(auth.get('email'))
 
         if not user:
             raise AuthenticationException('User does not exist !!')

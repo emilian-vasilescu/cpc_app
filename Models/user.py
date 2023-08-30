@@ -24,8 +24,10 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String(250))
 
     cards = db.relationship('Card', secondary=user_card_association, back_populates='users', lazy=True)
-    sell_transactions = db.relationship('MarketTransaction', back_populates='seller', foreign_keys=[MarketTransaction.seller_id])
-    buy_transactions = db.relationship('MarketTransaction', back_populates='buyer', foreign_keys=[MarketTransaction.buyer_id])
+    sell_transactions = db.relationship('MarketTransaction', back_populates='seller',
+                                        foreign_keys=[MarketTransaction.seller_id])
+    buy_transactions = db.relationship('MarketTransaction', back_populates='buyer',
+                                       foreign_keys=[MarketTransaction.buyer_id])
 
     def __init__(self, public_id, name, role, email, budget, country, password):
         self.public_id = public_id
@@ -35,3 +37,25 @@ class User(db.Model, SerializerMixin):
         self.budget = budget
         self.country = country
         self.password = password
+
+    @staticmethod
+    def get_user_by_id(user_id):
+        return User.query \
+            .filter_by(id=user_id) \
+            .first()
+
+    @staticmethod
+    def get_user_by_email(email):
+        return User.query \
+            .filter_by(email=email) \
+            .first()
+
+    @staticmethod
+    def get_all_users():
+        return User.query
+
+    @staticmethod
+    def get_user_by_public_id(public_id):
+        return User.query \
+            .filter_by(public_id=public_id) \
+            .first()

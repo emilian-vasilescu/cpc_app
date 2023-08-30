@@ -18,12 +18,12 @@ class UserController(BaseController):
 
         users = []
         if type(user_id) is int:
-            user = User.query.get(user_id)
+            user = User.get_user_by_id(user_id)
             if user:
                 users.append(user)
 
         else:
-            users = User.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            users = User.get_all_users().paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
         return {
             'data': {
@@ -42,10 +42,7 @@ class UserController(BaseController):
             raise ValidationFieldsException('Provide an user id !!')
 
         try:
-            user = User.query \
-                .filter_by(id=user_id) \
-                .first()
-
+            user = User.get_user_by_id(user_id)
             user_service = UserService()
             user_service.user = user
             user_service.data = request.form
@@ -65,9 +62,7 @@ class UserController(BaseController):
             raise ValidationFieldsException('Provide an user id !!')
 
         # delete user
-        user = User.query \
-            .filter_by(id=user_id) \
-            .first()
+        user = User.get_user_by_id(user_id)
 
         if not user:
             raise NotFoundException('User does not exist')

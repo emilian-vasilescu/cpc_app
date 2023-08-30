@@ -17,9 +17,7 @@ class UserService:
         if not all([name, email, role, country, password]):
             raise ValidationFieldsException('Name, role, email and password are mandatory.')
 
-        user = User.query \
-            .filter_by(email=email) \
-            .first()
+        user = User.get_user_by_email(email)
         if not user:
             # database ORM object
             self.user = User(

@@ -14,16 +14,13 @@ class CardController(BaseController):
 
         if current_user.role != User.ADMIN:
             raise AccessDeniedException(role=User.ADMIN)
-
         if type(user_id) is int:
-            cards = Card.query.join(Card.users).filter(User.id == user_id).paginate(page=self.get_current_page(),
-                                                                                    per_page=self.get_per_page())
+            query = Card.get_user_cards(user_id=user_id)
         elif type(card_id) is int:
-            cards = Card.query.filter_by(id=card_id).paginate(page=self.get_current_page(),
-                                                              per_page=self.get_per_page())
+            query = Card.get_card_by_id(card_id=card_id)
         else:
-            cards = Card.query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
-
+            query = Card.get_all_cards()
+        cards = query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
         return {
             'data': {
                 'cards': [card.to_dict() for card in cards],
@@ -58,10 +55,7 @@ class CardController(BaseController):
             raise ValidationFieldsException('Provide a card id !!')
 
         try:
-            card = Card.query \
-                .filter_by(id=card_id) \
-                .first()
-
+            card = Card.get_card_by_id(card_id)
             card_service = CardService()
             card_service.card = card
             card_service.data = request.form
@@ -80,8 +74,7 @@ class CardController(BaseController):
         if type(card_id) is not int:
             raise ValidationFieldsException('Provide a card id !!')
 
-        # delete attached cards
-        card = Card.query.filter_by(id=card_id).first()
+        card = Card.get_card_by_id(card_id)
 
         if not card:
             raise NotFoundException('Card does not exist')

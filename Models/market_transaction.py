@@ -37,3 +37,26 @@ class MarketTransaction(db.Model, SerializerMixin):
         self.buyer_id = buyer_id
         self.closed_at = closed_at
         self.modified_at = modified_at
+
+    @staticmethod
+    def get_transaction_by_id(transaction_id):
+        return MarketTransaction.query.get(transaction_id)
+
+    @staticmethod
+    def get_all_transactions():
+        return MarketTransaction.query
+
+    @staticmethod
+    def get_transactions_by_status(status):
+        return MarketTransaction.query \
+            .filter_by(status=status)
+
+    @staticmethod
+    def get_on_sell_transaction_for_seller_and_card(seller_id, card_id):
+        return MarketTransaction.query \
+            .filter_by(card_id=card_id, seller_id=seller_id, status=MarketTransaction.ON_SELL) \
+            .first()
+
+    @staticmethod
+    def get_number_of_sold_transactions_for_card(card_id):
+        return MarketTransaction.query.filter_by(card_id=card_id, status=MarketTransaction.SOLD).count()
