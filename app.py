@@ -1,7 +1,6 @@
 from flask import Flask, json
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import Response
-from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 
@@ -21,9 +20,14 @@ def handle_exception(e):
     else:
         code = 500
 
+    if hasattr(e, 'message'):
+        message = e.message
+    else:
+        message = str(e)
+
     response.data = json.dumps({
         "code": code,
-        "message": e.message,
+        "message": message,
     })
     response.content_type = "application/json"
     return response

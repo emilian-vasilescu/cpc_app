@@ -17,7 +17,6 @@ class MarketTransactionService:
         card_id, seller_id, asked_value = self.data.get('card_id'), self.data.get('seller_id'), self.data.get(
             'asked_value')
 
-        # @todo Validate data
         if not all([card_id, seller_id, asked_value]):
             raise ValidationFieldsException('card_id, seller_id and asked_value are mandatory.')
 

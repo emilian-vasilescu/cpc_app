@@ -66,7 +66,6 @@ class UserService:
         if not any([name, country, password]):
             raise ValidationFieldsException('At least one of Name, country or password is mandatory.')
 
-        # @todo Validate data
         if name:
             self.user.name = name
         if country:
