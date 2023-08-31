@@ -20,8 +20,8 @@ class MarketTransactionService:
         if not all([card_id, seller_id, asked_value]):
             raise ValidationFieldsException('card_id, seller_id and asked_value are mandatory.')
 
-        if current_user.role != User.ADMIN and current_user.id != seller_id:
-            raise AccessDeniedException('Only admins can add other user cards on market')
+        if current_user.role != User.ADMIN and current_user.id != int(seller_id):
+            raise AccessDeniedException(role=current_user.role, message='Only admins can add other user cards on market')
 
         self.user = User.get_user_by_id(seller_id)
 
@@ -55,7 +55,7 @@ class MarketTransactionService:
             raise ValidationFieldsException('buyer_id is mandatory.')
 
         if current_user.role != User.ADMIN and current_user.id != buyer_id:
-            raise AccessDeniedException('Only admins do purchases in the name of other users')
+            raise AccessDeniedException(role=current_user.role, message='Only admins do purchases in the name of other users')
 
         self.user = User.get_user_by_id(buyer_id)
 
@@ -104,7 +104,7 @@ class MarketTransactionService:
             raise NotFoundException('This transaction does not exists on market')
 
         if current_user.role != User.ADMIN and current_user.id != self.transaction.seller_id:
-            raise AccessDeniedException('Only admins can cancel other market transactions')
+            raise AccessDeniedException(role=current_user, message='Only admins can cancel other market transactions')
 
         if self.transaction.status != MarketTransaction.ON_SELL:
             raise ValidationFieldsException('Only on sell transactions can be canceled')

@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ register by user and by admin">
-      <change afterPath="$PROJECT_DIR$/Responses/Response.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/base_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/base_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/card_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/my_profile_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachineLearning/card_market_value_model.joblib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MachineLearning/machine_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/machine_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/market_transaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/market_transaction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Responses/Response.py" beforeDir="false" afterPath="$PROJECT_DIR$/Responses/Response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card_market_value_model.joblib" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,5 +227,21 @@
     <MESSAGE value="+ move queries in model" />
     <MESSAGE value="+ register by user and by admin" />
     <option name="LAST_COMMIT_MESSAGE" value="+ register by user and by admin" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Services/market_transaction_service.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Controllers/market_transaction_controller.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

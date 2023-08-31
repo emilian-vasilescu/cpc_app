@@ -2,6 +2,7 @@ from datetime import datetime
 # from Models.user import User
 # from Models.card import Card
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy import and_, or_
 from app import db
 
 
@@ -60,3 +61,13 @@ class MarketTransaction(db.Model, SerializerMixin):
     @staticmethod
     def get_number_of_sold_transactions_for_card(card_id):
         return MarketTransaction.query.filter_by(card_id=card_id, status=MarketTransaction.SOLD).count()
+
+    @staticmethod
+    def get_visible_transactions_for_user(user_id):
+        return MarketTransaction.query.filter(
+            or_(
+                MarketTransaction.status == MarketTransaction.ON_SELL,
+                MarketTransaction.seller_id == user_id,
+                MarketTransaction.buyer_id == user_id
+            )
+        )

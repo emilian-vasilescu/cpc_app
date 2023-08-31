@@ -59,7 +59,8 @@ class CardMarketValueGenerator:
             print(str(e))
             self.generate_train_data()
 
-        statement = select(MarketTransactionTrain.market_value, MarketTransactionTrain.age, MarketTransactionTrain.skill_level, MarketTransactionTrain.previous_transactions)
+        statement = select(MarketTransactionTrain.market_value, MarketTransactionTrain.age,
+                           MarketTransactionTrain.skill_level, MarketTransactionTrain.previous_transactions)
         connection = db.engine.connect()
         self.card_data = pd.read_sql_query(statement, connection)
         connection.close()
@@ -117,6 +118,5 @@ class CardMarketValueGenerator:
 
 with app.app_context():
     generator = CardMarketValueGenerator()
-    print(generator.predict(27, 77, 7))
     # generator.generate_train_data()
     # generator.init_model()

@@ -32,7 +32,7 @@ class UserController(BaseController):
     @check_jwt_token
     def post(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            raise AccessDeniedException('Only Admins can create other users !!')
+            raise AccessDeniedException(role=current_user.role, message='Only Admins can create other users !!')
 
         try:
             user_service = UserService()
@@ -54,7 +54,7 @@ class UserController(BaseController):
     @check_jwt_token
     def put(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            raise AccessDeniedException('Only Admins can modify other users !!')
+            raise AccessDeniedException(role=current_user.role, message='Only Admins can modify other users !!')
 
         if not user_id:
             raise ValidationFieldsException('Provide an user id !!')
@@ -76,7 +76,7 @@ class UserController(BaseController):
     @check_jwt_token
     def delete(self, current_user, user_id=None):
         if current_user.role != User.ADMIN:
-            raise AccessDeniedException('Only Admins can delete users !!')
+            raise AccessDeniedException(role=current_user.role, message='Only Admins can delete users !!')
         if not user_id:
             raise ValidationFieldsException('Provide an user id !!')
 

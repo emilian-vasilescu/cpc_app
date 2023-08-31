@@ -32,7 +32,7 @@ class Card(db.Model, SerializerMixin):
 
     @staticmethod
     def get_card_by_id(card_id):
-        return Card.query.filter_by(id=card_id)
+        return Card.query.filter_by(id=card_id).first()
 
     @staticmethod
     def get_all_cards():

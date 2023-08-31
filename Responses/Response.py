@@ -1,5 +1,7 @@
 class JSONResponse:
-    def __init__(self, code=200, message=None, data={}):
+    def __init__(self, code=200, message=None, data=None):
+        if data is None:
+            data = {}
         self._code = code
         self._message = message
         self._data = data

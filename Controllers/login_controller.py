@@ -28,7 +28,7 @@ class LoginController(BaseController):
             'public_id': user.public_id,
             'exp': datetime.utcnow() + timedelta(days=1)
         }, app.config['SECRET_KEY'])
-        self.response.append("user", user.to_dict())
+        self.response.append_data("user", user.to_dict())
         self.response.append_data("token", token)
         self.response.code = 201
         return self.response.build()

@@ -10,20 +10,24 @@ from app import db
 class MarketTransactionController(BaseController):
     @check_jwt_token
     def get(self, current_user, transaction_id=None):
-        # if user is not admin, return his own data
-        if current_user.role != User.ADMIN:
-            user_id = current_user.id
 
         transactions = []
         if type(transaction_id) is int:
             transaction = MarketTransaction.get_transaction_by_id(transaction_id)
             if transaction:
-                transactions.append(transaction)
-        else:
-            transactions = MarketTransaction.get_all_transactions().paginate(page=self.get_current_page(),
-                                                                             per_page=self.get_per_page())
+                if current_user.role == User.ADMIN or \
+                        (current_user.role == User.USER and
+                         (current_user.id == transaction.seller_id or current_user.id == transaction.buyer_id)):
+                    self.response.append_data("transaction", transaction)
 
-        self.response.build_data_by_records(transactions)
+        else:
+            if current_user.role == User.ADMIN:
+                transactions = MarketTransaction.get_all_transactions()
+            else:
+                transactions = MarketTransaction.get_visible_transactions_for_user(current_user.id)
+            transactions = transactions.paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            self.response.build_data_by_records(transactions)
+
         return self.response.build()
 
     @check_jwt_token

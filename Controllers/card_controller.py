@@ -47,7 +47,7 @@ class CardController(BaseController):
     @check_jwt_token
     def put(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
-            raise AccessDeniedException('Only Admins can modify other cards !!')
+            raise AccessDeniedException(role=current_user.role, message='Only Admins can modify other cards !!')
 
         if type(card_id) is not int:
             raise ValidationFieldsException('Provide a card id !!')
@@ -71,7 +71,7 @@ class CardController(BaseController):
     @check_jwt_token
     def delete(self, current_user, card_id=None):
         if current_user.role != User.ADMIN:
-            raise AccessDeniedException('Only Admins can delete cards !!')
+            raise AccessDeniedException(role=current_user.role, message='Only Admins can delete cards !!')
         if type(card_id) is not int:
             raise ValidationFieldsException('Provide a card id !!')
 
