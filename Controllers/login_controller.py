@@ -21,11 +21,14 @@ class LoginController(BaseController):
         if not user:
             raise AuthenticationException('User does not exist !!')
 
-        if check_password_hash(user.password, auth.get('password')):
-            token = jwt.encode({
-                'public_id': user.public_id,
-                'exp': datetime.utcnow() + timedelta(days=1)
-            }, app.config['SECRET_KEY'])
+        if not check_password_hash(user.password, auth.get('password')):
+            return AuthenticationException('Wrong Password !!', 403)
 
-            return {'data': {'token': token, 'user': user.to_dict()}}, 201
-        return AuthenticationException('Wrong Password !!', 403)
+        token = jwt.encode({
+            'public_id': user.public_id,
+            'exp': datetime.utcnow() + timedelta(days=1)
+        }, app.config['SECRET_KEY'])
+        self.response.append("user", user.to_dict())
+        self.response.append_data("token", token)
+        self.response.code = 201
+        return self.response.build()

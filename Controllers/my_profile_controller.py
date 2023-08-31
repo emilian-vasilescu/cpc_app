@@ -11,11 +11,8 @@ from app import db
 class MyProfileController(BaseController):
     @check_jwt_token
     def get(self, current_user):
-        return {
-            'data': {
-                'user': current_user.to_dict()
-            }
-        }
+        self.response.append_data("user", current_user.to_dict())
+        return self.response.build()
 
     @check_jwt_token
     def put(self, current_user):
@@ -27,8 +24,10 @@ class MyProfileController(BaseController):
             user_service.data = request.form
             user_service.update_my_profile()
         except Exception as e:
-           raise e
+            raise e
 
         db.session.commit()
-
-        return {'message': 'Profile updated', 'data': {'user': user.to_dict()}}, 201
+        self.response.message = "Profile updated"
+        self.response.append_data("user", user.to_dict())
+        self.response.code = 201
+        return self.response.build()

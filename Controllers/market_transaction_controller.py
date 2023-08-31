@@ -20,15 +20,11 @@ class MarketTransactionController(BaseController):
             if transaction:
                 transactions.append(transaction)
         else:
-            transactions = MarketTransaction.get_all_transactions().paginate(page=self.get_current_page(), per_page=self.get_per_page())
+            transactions = MarketTransaction.get_all_transactions().paginate(page=self.get_current_page(),
+                                                                             per_page=self.get_per_page())
 
-        return {
-            'data': {
-                'transactions': [transaction.to_dict() for transaction in transactions],
-                'page': transactions.page,
-                'total': transactions.total
-            }
-        }
+        self.response.build_data_by_records(transactions)
+        return self.response.build()
 
     @check_jwt_token
     def post(self, current_user, transaction_id=None):
@@ -41,9 +37,10 @@ class MarketTransactionController(BaseController):
 
         db.session.add(market_transaction_service.transaction)
         db.session.commit()
-
-        return {'message': 'Transaction created',
-                'data': {'transaction': market_transaction_service.transaction.to_dict()}}, 201
+        self.response.message = "Transaction created"
+        self.response.append_data("transaction", market_transaction_service.transaction.to_dict())
+        self.response.code = 201
+        return self.response.build()
 
     @check_jwt_token
     def put(self, current_user, transaction_id=None):
@@ -56,9 +53,9 @@ class MarketTransactionController(BaseController):
             raise e
 
         db.session.commit()
-
-        return {'message': 'Transaction edited',
-                'data': {'transaction': market_transaction_service.transaction.to_dict()}}, 201
+        self.response.message = "Transaction updated"
+        self.response.append_data("transaction", market_transaction_service.transaction.to_dict())
+        return self.response.build()
 
     @check_jwt_token
     def delete(self, current_user, transaction_id=None):
@@ -72,5 +69,6 @@ class MarketTransactionController(BaseController):
 
         db.session.commit()
 
-        return {'message': 'Transaction canceled',
-                'data': {'transaction': market_transaction_service.transaction.to_dict()}}, 201
+        self.response.message = "Transaction canceled"
+        self.response.append_data("transaction", market_transaction_service.transaction.to_dict())
+        return self.response.build()

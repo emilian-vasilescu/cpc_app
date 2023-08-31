@@ -21,13 +21,8 @@ class CardController(BaseController):
         else:
             query = Card.get_all_cards()
         cards = query.paginate(page=self.get_current_page(), per_page=self.get_per_page())
-        return {
-            'data': {
-                'cards': [card.to_dict() for card in cards],
-                'page': cards.page,
-                'total': cards.total
-            }
-        }
+        self.response.build_data_by_records(records=cards)
+        return self.response.build()
 
     @check_jwt_token
     def post(self, current_user, card_id=None):
@@ -44,7 +39,10 @@ class CardController(BaseController):
         db.session.add(card_service.card)
         db.session.commit()
 
-        return {'message': 'Card created', 'data': {'card': card_service.card.to_dict()}}, 201
+        self.response.message = "Card created"
+        self.response.append_data("card", card_service.card.to_dict())
+        self.response.code = 201
+        return self.response.build()
 
     @check_jwt_token
     def put(self, current_user, card_id=None):
@@ -65,7 +63,10 @@ class CardController(BaseController):
 
         db.session.commit()
 
-        return {'message': 'Card updated', 'data': {'card': card.to_dict()}}, 201
+        self.response.message = "Card updated"
+        self.response.append_data("card", card.to_dict())
+
+        return self.response.build()
 
     @check_jwt_token
     def delete(self, current_user, card_id=None):
@@ -83,4 +84,5 @@ class CardController(BaseController):
         db.session.delete(card)
         db.session.commit()
 
-        return {'message': 'Card deleted'}, 200
+        self.response.message = "Card deleted"
+        return self.response.build()

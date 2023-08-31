@@ -26,13 +26,8 @@ class UserController(BaseController):
         else:
             users = User.get_all_users().paginate(page=self.get_current_page(), per_page=self.get_per_page())
 
-        return {
-            'data': {
-                'users': [user.to_dict() for user in users],
-                'page': users.page,
-                'total': users.total
-            }
-        }
+        self.response.build_data_by_records(users)
+        return self.response.build()
 
     @check_jwt_token
     def post(self, current_user, user_id=None):
@@ -52,7 +47,9 @@ class UserController(BaseController):
         collection_service = CollectionService(user_service.user)
         collection_service.generate_collection()
 
-        return {'message': 'Successfully registered.', 'data': {'user': user_service.user.to_dict()}}, 201
+        self.response.message = "User created!"
+        self.response.append_data("user", user_service.user.to_dict())
+        return self.response.build()
 
     @check_jwt_token
     def put(self, current_user, user_id=None):
@@ -72,8 +69,9 @@ class UserController(BaseController):
             raise e
 
         db.session.commit()
-
-        return {'message': 'User updated', 'data': {'user': user.to_dict()}}, 201
+        self.response.message = "User updated"
+        self.response.append_data("user", user.to_dict())
+        return self.response.build()
 
     @check_jwt_token
     def delete(self, current_user, user_id=None):
@@ -91,5 +89,5 @@ class UserController(BaseController):
         user.cards.clear()
         db.session.delete(user)
         db.session.commit()
-
-        return {'message': 'User deleted'}, 200
+        self.response.message = "User deleted"
+        return self.response.build()

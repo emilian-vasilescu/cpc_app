@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ move queries in model">
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ register by user and by admin">
+      <change afterPath="$PROJECT_DIR$/Responses/Response.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/base_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/base_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/card_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/card_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/market_transaction_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/my_profile_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/my_profile_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/register_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/register_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/user_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/user_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/Decorators/check_jwt_token.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693405438981</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="+ register by user and by admin">
+      <created>1693406155874</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1693406155874</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +223,7 @@
     <MESSAGE value="+ machine learning" />
     <MESSAGE value="+ gitignore" />
     <MESSAGE value="+ move queries in model" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ move queries in model" />
+    <MESSAGE value="+ register by user and by admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ register by user and by admin" />
   </component>
 </project>

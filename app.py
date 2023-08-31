@@ -26,6 +26,7 @@ def handle_exception(e):
         message = str(e)
 
     response.data = json.dumps({
+        "data": {},
         "code": code,
         "message": message,
     })

@@ -19,5 +19,7 @@ class RegisterController(BaseController):
 
         collection_service = CollectionService(user_service.user)
         collection_service.generate_collection()
-
-        return {'message': 'Successfully registered.', 'data': {'user': user_service.user.to_dict()}}, 201
+        self.response.message = "Successfully registered."
+        self.response.append_data("user", user_service.user.to_dict())
+        self.response.code = 201
+        return self.response.build()

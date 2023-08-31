@@ -29,7 +29,7 @@ def check_jwt_token(f):
                 raise AuthenticationException('Token is ok but, user doesn\'t exist')
 
         except Exception as e:
-            return AuthenticationException(str(e))
+            raise e
         # returns the current logged in users context to the routes
         return f(*args, current_user, **kwargs)
 
