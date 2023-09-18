@@ -110,6 +110,7 @@ class MarketTransactionService:
             raise ValidationFieldsException('Only on sell transactions can be canceled')
 
         self.transaction.status = MarketTransaction.CANCELED
+        self.transaction.modified_at = datetime.now()
 
     @property
     def user(self):
