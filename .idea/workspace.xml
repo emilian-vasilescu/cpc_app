@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ second test&#10;+ response bug">
-      <change beforePath="$PROJECT_DIR$/Services/market_transaction_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Services/market_transaction_service.py" afterDir="false" />
+    <list default="true" id="99b71e8f-ffe7-4cc4-a1e6-7667d1008bb6" name="Changes" comment="+ cancelled modified at">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695043487571</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="+ cancelled modified at">
+      <created>1695043963437</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1695043963437</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +230,7 @@
     <MESSAGE value="+ move queries in model" />
     <MESSAGE value="+ register by user and by admin" />
     <MESSAGE value="+ second test&#10;+ response bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ second test&#10;+ response bug" />
+    <MESSAGE value="+ cancelled modified at" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ cancelled modified at" />
   </component>
 </project>

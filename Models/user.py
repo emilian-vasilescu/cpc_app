@@ -9,7 +9,7 @@ class User(db.Model, SerializerMixin):
 
     # https://github.com/n0nSmoker/SQLAlchemy-serializer
     serialize_rules = ('-cards.users', '-sell_transactions.seller', '-sell_transactions.buyer',
-                       '-buy_transactions.buyer', '-buy_transactions.seller', '-cards.transactions', '-password',)
+                       '-buy_transactions.buyer', '-buy_transactions.seller', '-cards.transactions', '-password', 'collection_value')
 
     ADMIN = 'admin'
     USER = 'user'
@@ -37,6 +37,9 @@ class User(db.Model, SerializerMixin):
         self.budget = budget
         self.country = country
         self.password = password
+
+    def collection_value(self):
+        return sum([card.market_value for card in self.cards])
 
     @staticmethod
     def get_user_by_id(user_id):
