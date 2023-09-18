@@ -11,8 +11,12 @@ class JSONResponse:
 
     def build_data_by_records(self, records):
         self.append_data("records", [record.to_dict() for record in records])
-        self.append_data("page", records.page)
-        self.append_data("total", records.total)
+        if hasattr(records, 'page'):
+            self.append_data("page", records.page)
+            self.append_data("total", records.total)
+        else:
+            self.append_data("page", 1)
+            self.append_data("total", len(records))
 
     @property
     def message(self):
